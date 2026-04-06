@@ -1,0 +1,10 @@
+# Add this section to your /mnt/UDISK/printer_data/config/printer.cfg
+#
+# Place it ANYWHERE after [bed_mesh] and [prtouch_v3] (or [prtouch_v2]) so the
+# extras module loads after Klipper has registered both. A common spot is right
+# after [exclude_object] near the end of the file, just before the SAVE_CONFIG
+# block. The section name MUST start with "restore_" and NOT with "bed_mesh"
+# (a section starting with bed_mesh would be picked up by ProfileManager and
+# cause an IndexError on startup).
+
+[restore_bed_mesh]

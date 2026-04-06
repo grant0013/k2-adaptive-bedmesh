@@ -1,0 +1,15 @@
+# Local working files pulled from the printer for diff/extraction
+_pulled_*
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor / OS junk
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db

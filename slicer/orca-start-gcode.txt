@@ -1,0 +1,48 @@
+; OrcaSlicer "Machine start G-code" template for Creality K2 (260mm) with
+; K2-Adaptive-BedMesh installed.
+;
+; Where to paste this:
+;   OrcaSlicer → Printer Settings → Machine G-code → Machine start G-code
+;
+; Required Orca settings (Print Settings → Others → Bed mesh):
+;   Bed mesh min:           5, 5
+;   Bed mesh max:           255, 255
+;   Probe point distance:   50, 50
+;   Mesh margin:            5
+
+START_PRINT EXTRUDER_TEMP=[nozzle_temperature_initial_layer] BED_TEMP=[bed_temperature_initial_layer_single] MESH_MIN=[adaptive_bed_mesh_min] MESH_MAX=[adaptive_bed_mesh_max] PROBE_COUNT=[bed_mesh_probe_count]
+T[initial_no_support_extruder]
+M204 S2000
+G1 Z3 F600
+M83
+G1 Y150 F12000
+G1 X5 F12000
+G1 Z0.2 F600
+G1 X5 Y150 F6000
+G1 X5 Y5 E15 F6000
+G1 X150 Y5 E15 F6000
+G92 E0
+G1 Z1 F600
+
+; Notes:
+;
+; The four placeholders [nozzle_temperature_initial_layer],
+; [bed_temperature_initial_layer_single], [adaptive_bed_mesh_min],
+; [adaptive_bed_mesh_max] and [bed_mesh_probe_count] are substituted by
+; OrcaSlicer at slice time. The result on the printer looks like:
+;
+;   START_PRINT EXTRUDER_TEMP=220 BED_TEMP=55 MESH_MIN=113 MESH_MAX=147 PROBE_COUNT=4
+;
+; The START_PRINT macro on the printer reads these and calls
+; BED_MESH_CALIBRATE with the correct adaptive bounds.
+;
+; To skip adaptive mesh on a particular print (e.g. tiny calibration cube),
+; add MESH=0 to the START_PRINT call:
+;
+;   START_PRINT EXTRUDER_TEMP=[...] BED_TEMP=[...] MESH=0
+;
+; The macro will then skip the mesh entirely.
+;
+; DO NOT prefix this start gcode with "M140 S0" or "M104 S0". Those commands
+; will zero the bed and hotend temperatures BEFORE START_PRINT runs and break
+; the prepare flow on the K2.
