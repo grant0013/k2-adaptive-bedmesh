@@ -65,6 +65,10 @@ If you don't see those messages but you do see `Mesh Bed Leveling Complete` from
 
 See [`docs/how-it-works.md`](docs/how-it-works.md) for the full walkthrough — the wrapper hijack mechanism, the master-server bypass, the section-name-collision footgun, and why `printer.lookup_object('bed_mesh').bmc.cmd_BED_MESH_CALIBRATE` is the right way to grab the upstream handler from inside a custom extras module.
 
+## Related projects
+
+- [k2-reverse-engineering](https://github.com/grant0013/k2-reverse-engineering) — the upstream research that documents Creality's binaries, the RS-485 motor protocol, the 226-parameter motor controller map, and provides general-purpose K2 SSH tooling. Read this if you want to understand **why** any of the changes here are needed.
+
 ## Acknowledgements
 
 This is built on top of [Klipper](https://www.klipper3d.org/) by Kevin O'Connor and contributors. The bed_mesh module's adaptive support is upstream Klipper code — Creality just stripped/wrapped it. We're putting it back the way Klipper intended.
