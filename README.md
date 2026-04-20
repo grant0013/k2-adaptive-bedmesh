@@ -1,5 +1,20 @@
 # K2-Adaptive-BedMesh
 
+> **⚠️ Superseded by [KAMP-K2](https://github.com/grant0013/KAMP-K2)**
+>
+> This repo was the original proof-of-concept: a minimal override that restored upstream `BED_MESH_CALIBRATE` on the K2, plus macro replacements that read adaptive bounds from slicer start-gcode placeholders.
+>
+> It's been **replaced by [KAMP-K2](https://github.com/grant0013/KAMP-K2)** — a fork of the widely-used [kyleisah/Klipper-Adaptive-Meshing-Purging](https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging) with the K2-specific glue included. That repo:
+>
+> - Uses KAMP's `exclude_object` metadata approach (no slicer placeholders required).
+> - Adds adaptive line purging along the print-area edge.
+> - Ships a paramiko-based auto-installer: `python install_k2.py --host 192.168.x.x`.
+> - Is idempotent, dry-run-able, and has a built-in `--revert` flag.
+>
+> **If you're setting up a K2 now, use KAMP-K2.** This repo is kept online as historical reference and in case anyone wants the simpler slicer-placeholder approach. No further work is planned here.
+
+---
+
 True adaptive bed mesh on the Creality K2 (and K2 Plus / K1 / K1C — see compatibility), unlocked by bypassing Creality's hardcoded `prtouch_v3_wrapper.so` override of `BED_MESH_CALIBRATE`.
 
 ## What this gives you
